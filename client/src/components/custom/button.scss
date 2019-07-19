@@ -1,0 +1,64 @@
+.custom-button {
+    display: inline-flex;
+    justify-content: center;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    &:hover {
+        cursor: pointer;
+    }
+    &:active {
+        cursor: pointer;
+    }
+}
+
+.violet{
+    background-color: #9383f3cc;
+    &:hover {
+        background-color: #8374e3cc;
+    }
+    &:active {
+        background-color: #7365d3cc;
+    }
+}
+
+.pink{
+    background-color: #d363f8cc;
+    &:hover {
+        background-color: #f383ffcc;
+    }
+    &:active {
+        background-color: #c143f1cc;
+    }
+}
+
+.warning{
+    background-color: #ee3433cc;
+    &:hover {
+        background-color: #de2322cc;
+    }
+    &:active {
+        background-color: #ce1211cc;
+    }
+}
+
+.alert{
+    background-color: #b143e1;
+    &:hover {
+        background-color: #a363f3;
+    }
+    &:active {
+        background-color: #9383f3;
+    }
+}
+
+.success{
+    background-color: #b143e1;
+    &:hover {
+        background-color: #a363f3;
+    }
+    &:active {
+        background-color: #9383f3;
+    }
+}
+
