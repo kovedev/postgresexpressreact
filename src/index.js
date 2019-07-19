@@ -2,6 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import path from 'path';
+import bcrypt from 'bcryptjs';
 
 import models, { sequelize} from './models';
 import routes from './routes';
@@ -30,6 +32,7 @@ app.use('/api/session', routes.session);
 app.use('/api/users', routes.user);
 app.use('/api/messages', routes.message);
 app.use('/api/items', routes.item);
+app.use('/api/auth', routes.auth);
 
 if (process.env.NODE_ENV === 'production') {
     // Set static folder
@@ -39,29 +42,46 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
+if (process.env.NODE_ENV === 'local') {
+    app.use(express.static('public'));
+}
 
 // Init database data
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = false;
 
 const port = process.env.PORT || 5000;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
     if(eraseDatabaseOnSync){
-        createUsersWithMessages();
+        createItem('Javel')
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash('james123', salt, (err, hash) => {
+                if(err) throw err;
+                createUserWithMessages('Jessy', hash, 'jessy@rocket.pkm', 'Prepare for trouble');
+            })
+        })
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash('james123', salt, (err, hash) => {
+                if(err) throw err;
+                createUserWithMessages('James', hash, 'james@rocket.pkm', 'Prepare for trouble');
+            })
+        })
     }
-      
+
     app.listen(port, () => {
         console.log(`Application running on port: ${port}`);
     });
 });
 
-const createUsersWithMessages = async () => {
+const createUserWithMessages = async (name, hash, email, message) => {
     await models.User.create(
         {
-            username: 'Jessy',
+            username: name,
+            email: email,
+            password: hash,
             messages: [
                 {
-                    text: 'Prepare for trouble',
+                    text: message,
                 },
             ],
         },
@@ -69,25 +89,13 @@ const createUsersWithMessages = async () => {
             include: [models.Message],
         },
     );
+};
 
-    await models.User.create(
-        {
-            username: 'James',
-            messages: [
-                {
-                    text: 'Make it double',
-                },
-            ],
-        },
-        {
-            include: [models.Message],
-        },
-    );
-
+const createItem = async (name) => {
     await models.Item.create(
         {
-            name: "Javel",
+            name: name,
             date: Date.now()
         }
     )
-};
+}

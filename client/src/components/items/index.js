@@ -19,8 +19,7 @@ class ItemsComponent extends Component {
     addItem = () => {
         const name = prompt("Enter item name");
         const item = {
-            name: name,
-            id: this.props.items.index
+            name: name
         }
         this.props.dispatch(addItem(item));
     }

@@ -7,6 +7,18 @@ const user = (sequelize, Datatypes) => {
             required: true,
             allowNull: false
         },
+        email: {
+            type: Datatypes.STRING,
+            unique: true,
+            required: true,
+            allowNull: false
+        },
+        password: {
+            type: Datatypes.STRING,
+            unique: true,
+            required: true,
+            allowNull: false
+        }
     });
 
     User.associate = models => {

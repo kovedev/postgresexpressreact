@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/index.js --ignore './client/' --ignore './public/'",
     "server": "nodemon --exec babel-node src/index.js --ignore './client/'",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "docs": "apidoc -e '(node_modules|public)' -o client/build/apidoc ",
+    "devdocs": "apidoc -e '(node_modules|public)' -o public/apidoc ",
     "build": "npm run build --prefix client && npm run docs"
   },
   "keywords": [],
@@ -22,12 +24,14 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.1",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "install": "^0.12.2",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^7.11.0",
     "sequelize": "^5.10.1",
     "uuid": "^3.3.2"

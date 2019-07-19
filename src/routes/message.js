@@ -9,7 +9,7 @@ const router = Router();
  * @apiGroup Messages
  *
  * @apiExample {curl} Example usage:
- *  curl localhost:4040/messages/ 
+ *  curl localhost:5000/api/messages/ 
  *
  * @apiSuccess {bool} success boolean.
  * @apiSuccess {array} messages  Message array.
@@ -26,7 +26,7 @@ router.get('/', asyncMiddleware(async (req, res) => {
  * @apiGroup Messages
  *
  * @apiExample {curl} Example usage:
- *  curl localhost:4040/messages/1
+ *  curl localhost:5000/api/messages/1
  * 
  * @apiSuccess {bool} success boolean.
  * @apiSuccess {array} message Message object.
@@ -45,7 +45,7 @@ router.get('/:messageId', asyncMiddleware(async (req, res) => {
  * @apiGroup Messages
  *
  * @apiExample {curl} Example usage:
- *  curl -d '{"text": "Hello world"}' -H "Content-Type: application/json" localhost:4040/messages/
+ *  curl -d '{"text": "Hello world"}' -H "Content-Type: application/json" localhost:5000/api/messages/
  * 
  * @apiSuccess {bool} success boolean.
  * @apiSuccess {array} message Message object.
@@ -65,7 +65,7 @@ router.post('/', asyncMiddleware(async (req, res) => {
  * @apiGroup Messages
  * 
  * @apiExample {curl} Example usage:
- *  curl -X "DELETE" localhost:4040/messages/1
+ *  curl -X "DELETE" localhost:5000/api/messages/1
  *
  * @apiSuccess {bool} success boolean.
  * @apiSuccess {string} response Response message.
