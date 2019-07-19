@@ -10,6 +10,7 @@ node_modules
 
 # testing
 /client/coverage
+/config/*
 
 # production
 /client/build
