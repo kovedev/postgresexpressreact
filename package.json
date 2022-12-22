@@ -31,7 +31,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "install": "^0.12.2",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "pg": "^7.11.0",
     "sequelize": "^5.10.1",
     "uuid": "^3.3.2"
